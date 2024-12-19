@@ -11,7 +11,6 @@ app.get("/products", (req,res) => {
     res.send("Server is ready");
 });
 
-console.log(process.env.MONGO_URL);
 
 app.listen(5000, () => {
     connectDB();
