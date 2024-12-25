@@ -8,7 +8,9 @@ dotenv.config();
 
 const app = express();
 
-app.post("/products", async (req, res) => {
+app.use(express.json()); // allows us ro accept JSON data in the req.body
+
+app.post("/api/products", async (req, res) => {
   const product = req.body; // user will send this data 
 
   if(!product.name || !product.price || !product.image) {
@@ -26,7 +28,7 @@ app.post("/products", async (req, res) => {
   }
 });
 
-
+/*
 app.get("/products", async (req, res) => {
   try {
   const products = await Product.find();
@@ -34,9 +36,10 @@ app.get("/products", async (req, res) => {
   } catch (error) {
     console.error("Error in fetch products", error.message);
     res.status(500).json({success: false, message: "Server Error" });
-  }
-  });
-
+    }
+    });
+    
+    */
 
 app.listen(5000, () => {
   connectDB();
