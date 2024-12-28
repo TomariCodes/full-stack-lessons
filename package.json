@@ -1,7 +1,6 @@
 {
   "name": "full-stack-lessons",
   "version": "1.0.0",
-  "description": "my first attempt",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon backend/server.js"
@@ -11,19 +10,18 @@
     "url": "git+https://github.com/TomariCodes/full-stack-lessons.git"
   },
   "type": "module",
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TomariCodes/full-stack-lessons/issues"
   },
   "homepage": "https://github.com/TomariCodes/full-stack-lessons#readme",
-  "keywords": [],
+  "description": "",
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "mongoose": "^8.9.0"
-  },
-  "devDependencies": {
+    "mongoose": "^8.9.2",
     "nodemon": "^3.1.9"
   }
 }
