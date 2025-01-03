@@ -1,29 +1,21 @@
 import express from "express";
 import mongoose from "mongoose";
-import Product from "../models/product-model.js"
+import Product from "../models/product-model.js";
+import { getProducts } from "../controllers/product-controller.js";
 
 const router = express.Router();
 
-
-router.get("/", async (req, res) => {
-try {
-    const products = await Product.find({});
-    res.status(200).json({ success: true, data: products });
-  } catch (error) {
-    console.log("error in fetching products:", error.message);
-    res.status(500).json({ success: false, message: "Server Error" });
-  }
-});
+router.get("/", getProducts());
 
 router.post("/", async (req, res) => {
-    const product = req.body; // user will send this data
+  const product = req.body; // user will send this data
 
-    if (!product.name || !product.price || !product.image) {
+  if (!product.name || !product.price || !product.image) {
     return res
-    .status(400)
+      .status(400)
       .json({ success: false, message: "Please provide all fields" });
   }
-  
+
   const newProduct = new Product(product);
 
   try {
@@ -47,25 +39,24 @@ router.put("/:id", async (req, res) => {
   }
 
   try {
-      const updatedProduct = await Product.findByIdAndUpdate(id, product, {
+    const updatedProduct = await Product.findByIdAndUpdate(id, product, {
       new: true,
     });
     res.status(200).json({ success: true, data: updatedProduct });
-} catch (error) {
+  } catch (error) {
     res.status(500).json({ success: false, message: "Server Error" });
-}
+  }
 });
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-      await Product.findByIdAndDelete(id);
+    await Product.findByIdAndDelete(id);
     res.status(200).json({ success: true, message: "Product deleted" });
-} catch (error) {
+  } catch (error) {
     console.log("error in deleting product:", error.message);
     res.status(400).json({ success: false, message: "Product not found." });
   }
 });
-
 
 export default router;
