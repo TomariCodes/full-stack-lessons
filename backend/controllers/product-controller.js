@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Product from "../models/product-model";
+import Product from "../models/product-model.js";
 
 export const getProducts = async (req, res) => {
   try {
@@ -31,7 +31,7 @@ export const createProduct = async (req, res) => {
   }
 };
 
-const updateProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
   const { id } = req.params;
 
   const product = req.body;
@@ -52,7 +52,6 @@ const updateProduct = async (req, res) => {
   }
 };
 
-
 export const deleteProduct = async (req, res) => {
   const { id } = req.params;
   try {
@@ -62,4 +61,4 @@ export const deleteProduct = async (req, res) => {
     console.log("error in deleting product:", error.message);
     res.status(400).json({ success: false, message: "Product not found." });
   }
-}
+};
